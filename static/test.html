@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>test</title></head>
+<body>
+<main id="view"></main>
+<script>
+window.onerror = function (m, s, l, c) {
+    document.title = "ERR: " + m + " @line " + l + ":" + c;
+};
+window.onunhandledrejection = function (e) {
+    document.title = "REJ: " + (e.reason && (e.reason.stack || e.reason.message || e.reason));
+};
+setTimeout(function () {
+    if (document.title === "test") {
+        var v = document.getElementById("view");
+        document.title = "OK len=" + (v ? v.innerHTML.length : "noview");
+    }
+}, 2500);
+</script>
+<script src="/app.js"></script>
+</body></html>
